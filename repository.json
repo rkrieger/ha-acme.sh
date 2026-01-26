@@ -1,5 +1,5 @@
 {
-  "name": "Aglezllinas Home Assistant Add-ons",
-  "url": "https://github.com/thomasmauerer/hassio-addons",
-  "maintainer": "Aglezllinas"
+  "name": "HomeAssistant - acme.sh add-on",
+  "url": "https://github.com/rkrieger/ha-acme.sh",
+  "maintainer": "rkrieger"
 }
