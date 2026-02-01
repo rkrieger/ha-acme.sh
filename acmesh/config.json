@@ -9,6 +9,7 @@
   "boot": "auto",
   "options": {
     "accountemail": null,
+    "ca": "letsencrypt",
     "domain": null,
     "dns": null,
     "dnsEnvVariables": [null],
@@ -18,6 +19,7 @@
   },
   "schema": {
     "accountemail": "str",
+    "ca": "match(letsencrypt|letsencrypt_test|zerossl|sslcom|google|googletest|actalis)",
     "domain": "str",
     "dns": "str",
     "dnsEnvVariables": [
