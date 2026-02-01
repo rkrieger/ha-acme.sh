@@ -1,6 +1,7 @@
 # Home Assistant Add-on: acme.sh
 
 This a home assistant integration of the acme.sh project. It allows to generate a TLS certificate using the ACME protocol.
+This version is forked from the [original]([https://github.com/Angoll/acme.sh-homeassistant-addon]/).
 
 ## Configuration
 Tested with the *dns_cf* configuration but It should work, the dnsEnvVariables can be configured with any environment required for acme.sh to work.
