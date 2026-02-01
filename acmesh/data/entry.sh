@@ -9,6 +9,7 @@ if [ ! -f "${LE_CONFIG_HOME}/account.conf" ]; then
 fi
 
 ACCOUNT_EMAIL=$(bashio::config 'accountemail')
+CA=$(bashio::config 'ca')
 DOMAIN=$(bashio::config 'domain')
 DNS_PROTO=$(bashio::config 'dns')
 DNS_ENV_OPTIONS=$(jq -r '.dnsEnvVariables |map("export \(.name)=\(.value|tojson)")|.[]' $CONFIG_PATH)
@@ -19,14 +20,14 @@ KEY_FILE=$(bashio::config 'keyfile')
 source <(echo ${DNS_ENV_OPTIONS});
 
 bashio::log.info "Registering account"
-acme.sh --register-account -m ${ACCOUNT_EMAIL}
+acme.sh --server ${CA} --register-account -m ${ACCOUNT_EMAIL}
 
 bashio::log.info "Issuing certificate for domain: ${DOMAIN}"
 
 function issue {
     # Issue the certificate exit corretly if is not time to renew
     local RENEW_SKIP=2
-    acme.sh --issue --domain ${DOMAIN} \
+    acme.sh --server ${CA} --issue --domain ${DOMAIN} \
         --keylength ${KEY_LENGTH} \
         --dns ${DNS_PROTO} \
         || { ret=$?; [ $ret -eq ${RENEW_SKIP} ] && return 0 || return $ret ;}
